@@ -12,6 +12,31 @@ apiRouter.get('/students', (req, res, next) => {
 	}
 )
 
+apiRouter.get('/students/:id', (req, res, next) => {
+	var id = req.params.id;
+	students.findAll(
+		{include: [{model: campuses}],
+		where: {
+				id : id
+			}
+		}
+	)
+	.then((students) => res.send(students))
+	.catch(next)
+})
+
+apiRouter.delete('/students/:id', (req, res, next) => {
+	var id = req.params.id;
+	students.destroy(
+		{where: {
+			id : id
+		}}
+	)
+	.then(console.log("Delete successful"))
+	.catch(next)
+})
+
+
 apiRouter.get('/campuses', (req, res, next) => {
 	campuses.findAll()
 	.then((campuses) => res.send(campuses))
@@ -33,28 +58,23 @@ apiRouter.get('/campuses/:id', (req, res, next) => {
 	.catch(next)
 })
 
-apiRouter.get('/students/:id', (req, res, next) => {
-	var id = req.params.id;
-	students.findAll(
-		{where: {
-				id : id
-			}
-		}
+apiRouter.post('/addStudent', (req, res, next) => {
+	students.create(
+		req.body
 	)
-	.then((students) => res.send(students))
+	.then((body) => res.send(body))
 	.catch(next)
 })
 
-apiRouter.delete('/students/:id', (req, res, next) => {
-	var id = req.params.id;
-	students.destroy(
-		{where: {
-			id : id
-		}}
+apiRouter.post('/addCampus', (req, res, next) => {
+	campuses.create(
+		req.body
 	)
-	.then(console.log("Delete successful"))
+	.then((body) => res.send(body))
 	.catch(next)
 })
+
+
 
 apiRouter.delete('/campuses/:id', (req, res, next) => {
 	var id = req.params.id;

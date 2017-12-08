@@ -5,6 +5,8 @@ import CampusContainer from './campuses'
 import StudentContainer from './students'
 import CampusStudentsContainer from './campusStudents'
 import SingleStudentContainer from './singleStudent'
+import AddStudentContainer from './addNewStudent'
+import AddCampusContainer from './addCampus'
 import Students from "./students";
 import Campuses from "./campuses";
 import Homepage from "./homepage";
@@ -25,6 +27,8 @@ render() {
         <div>
           <h1>Stackistar Galactica</h1>
             <Switch>
+            <Route exact path = "/addStudent" component = {AddStudentContainer}/>
+            <Route exact path = "/addCampus" component = {AddCampusContainer}/>
             <Route exact path = "/" component = {Homepage}/>
             <Route exact path = "/campuses" component = {CampusContainer}/>      {/* Here is RouterTown*/}
             <Route exact path = "/students" component= {StudentContainer}/>

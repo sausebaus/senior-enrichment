@@ -21,7 +21,8 @@ render(){
         {this.props.students.map((student) => <div key = {student.id}>
                                                 <p> Name: {student.fullName} </p>
                                                 <p> Email: {student.email}</p>
-                                               {/* <p> Campus: {student.campus.name} </p> */}
+                                                <p> GPA: {student.gpa} </p>
+                                                <p> <Link to= {`/campuses/${student.campusId}`}> Campus: {student.campus && student.campus.name} </Link> </p> 
                                                 </div>)}</li>
         
         </ul>

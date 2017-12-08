@@ -12,9 +12,14 @@ componentDidMount() {
     this.props.loadCampusStudents();
 }
 
+// var title = this.props.students[0].campus.name;
+
 render(){
 
+
     return(
+        <div>
+            <h1></h1>
         <ul>
         
          {this.props.students.map((student) => 
@@ -22,6 +27,7 @@ render(){
             <li> {student.fullName} </li> </Link> )} 
         
         </ul>
+        </div>
     )
     
   }  

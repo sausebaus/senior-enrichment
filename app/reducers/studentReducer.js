@@ -46,6 +46,16 @@ export const fetchStudents = () => {
     }
 }
 
+export const makeStudent = (state) => {
+    return function (dispatch) {
+        axios.post('/api/addStudent', state)
+        .then(response => {
+            dispatch(getStudents(response.data));
+        })
+        .catch(console.error);
+    }
+}
+
 export const fetchSingleStudent = (id) => {
     return function (dispatch) {
         axios.get('/api/students/'+id)
