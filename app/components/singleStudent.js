@@ -21,7 +21,8 @@ render(){
         {this.props.students.map((student) => <div key = {student.id}>
                                                 <p> Name: {student.fullName} </p>
                                                 <p> Email: {student.email}</p>
-                                                <p> Photo: </p></div>)}</li>
+                                               {/* <p> Campus: {student.campus.name} </p> */}
+                                                </div>)}</li>
         
         </ul>
     )

@@ -13,6 +13,8 @@ componentDidMount() {
 
 render(){
     return(
+        <div>
+        <h1>  </h1>
         <ul>
         
         {this.props.campuses.map((campus) =>
@@ -26,6 +28,7 @@ render(){
         )}
         
         </ul>
+        </div>
     )
     
   }  
