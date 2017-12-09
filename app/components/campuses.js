@@ -22,7 +22,7 @@ render(){
         <li key = {campus.id} > 
             {campus.name} 
                 <br /> 
-            <Link to={`/campuses/${campus.id}`}> <img src = {campus.imgUrl} /> </Link> 
+            <Link to={`/singleCampus/${campus.id}`}> <img src = {campus.imgUrl} /> </Link> 
         </li>
 
         )}

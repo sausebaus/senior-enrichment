@@ -32,7 +32,7 @@ apiRouter.delete('/students/:id', (req, res, next) => {
 			id : id
 		}}
 	)
-	.then(console.log("Delete successful"))
+	.then(res.sendStatus(202))
 	.catch(next)
 })
 
@@ -43,6 +43,18 @@ apiRouter.get('/campuses', (req, res, next) => {
 	.catch(next)
 	}
 )
+
+apiRouter.get('/singleCampus/:id', (req, res, next) => {
+	var id = req.params.id;
+	campuses.findAll({
+		where: {
+				id : id
+			}
+		}
+	)
+	.then((campus) => res.send(campus))
+	.catch(next)
+})
 
 
 apiRouter.get('/campuses/:id', (req, res, next) => {

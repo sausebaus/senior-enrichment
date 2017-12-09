@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {fetchCampusStudents} from '../reducers/studentReducer'
+import {fetchCampuses} from '../reducers/campusReducer'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
@@ -10,16 +11,21 @@ class CampusStudents extends Component {
 componentDidMount() {
 
     this.props.loadCampusStudents();
+    this.props.loadCampuses();
+  
+
 }
 
-// var title = this.props.students[0].campus.name;
+
 
 render(){
 
-
+    console.log(this.props.students);
+    console.log(this.props.campuses);
+    console.log(this.props.campuses && this.props.campuses.filter(campus => campus.id === this.props.students.campusId))
     return(
         <div>
-            <h1></h1>
+        <h1></h1>
         <ul>
         
          {this.props.students.map((student) => 
@@ -35,7 +41,8 @@ render(){
 
 function mapStateToProps (storeState) {
     return {
-        students : storeState.students
+        students : storeState.students,
+        campuses : storeState.campuses
     }
 }
 
@@ -44,7 +51,11 @@ function mapDispatchToProps(dispatch, ownProps) {
     return {
         loadCampusStudents : function() {
             dispatch(fetchCampusStudents(ownProps.match.params.id));
+        },
+        loadCampuses : function() {
+            dispatch(fetchCampuses());
         }
+
     }
 }
 

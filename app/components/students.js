@@ -22,9 +22,9 @@ class Students extends Component {
 
             <ul>
             
-            {this.props.students.map((student) => 
+            {this.props.students.map((student) => <div>
                 <Link to={`/students/${student.id}`} key = {student.id} > 
-                <li> {student.fullName} </li> </Link> )} 
+                <li> {student.fullName} </li> </Link></div>)} 
             
             </ul>
 

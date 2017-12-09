@@ -7,6 +7,7 @@ import CampusStudentsContainer from './campusStudents'
 import SingleStudentContainer from './singleStudent'
 import AddStudentContainer from './addNewStudent'
 import AddCampusContainer from './addCampus'
+import SingleCampusContainer from './singleCampus'
 import Students from "./students";
 import Campuses from "./campuses";
 import Homepage from "./homepage";
@@ -34,6 +35,7 @@ render() {
             <Route exact path = "/students" component= {StudentContainer}/>
             <Route exact path = "/campuses/:id" component = {CampusStudentsContainer}/>
             <Route exact path = "/students/:id" component = {SingleStudentContainer}/>
+            <Route exact path = '/singleCampus/:id' component = {SingleCampusContainer}/>
             </Switch>
         </div>
       </div>

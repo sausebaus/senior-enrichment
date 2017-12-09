@@ -26,7 +26,6 @@ const getSingleStudent = (students) => {
 }
 
 export const fetchCampusStudents = (id) => {
-    console.log("Fetching Students....")
     return function (dispatch) {
         axios.get('/api/campuses/'+id)
         .then(response => {
@@ -39,16 +38,6 @@ export const fetchCampusStudents = (id) => {
 export const fetchStudents = () => {
     return function (dispatch) {
         axios.get('/api/students')
-        .then(response => {
-            dispatch(getStudents(response.data));
-        })
-        .catch(console.error);
-    }
-}
-
-export const makeStudent = (state) => {
-    return function (dispatch) {
-        axios.post('/api/addStudent', state)
         .then(response => {
             dispatch(getStudents(response.data));
         })
