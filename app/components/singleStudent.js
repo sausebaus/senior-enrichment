@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {fetchSingleStudent} from '../reducers/studentReducer'
+import {fetchSingleStudent} from '../reducers/singleStudentReducer'
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import axios from 'axios';
@@ -20,12 +20,14 @@ componentDidMount() {
 }
 
 deleteHandler(event) {
-    var thisStudent = this.props.students[0].id
-    console.log(thisStudent)
+    var thisStudent = this.props.student.id
     axios.delete('/api/students/'+thisStudent)
-} //PLEASE FIX THIS HACKEY MESS
+    .then(this.props.history.push('/students'))
+} 
 
 render(){
+
+    console.log(this.props)
 
     return(
         <div>
@@ -34,17 +36,18 @@ render(){
 
         
         <li>
-        {this.props.students.map((student) => 
-            <div key = {student.id}>
-                                                <p> Name: {student.fullName} </p>
-                                                <p> Email: {student.email}</p>
-                                                <p> GPA: {student.gpa} </p>
-                                                <p> <Link to= {`/singleCampus/${student.campusId}`}> 
-                                                Campus: {student.campus && student.campus.name} </Link> </p> 
-                                                </div>)}</li>
+    
+            <div>
+                <p> Name: {this.props.student.fullName} </p>
+                <p> Email: {this.props.student.email}</p>
+                <p> GPA: {this.props.student.gpa} </p>
+                <p> <Link to= {`/singleCampus/${this.props.student.campusId}`}> 
+                Campus: {this.props.student.campus.name} </Link> </p> 
+                </div></li>
         
         </ul>
-       <Link to="/students"> <button onClick = {this.deleteHandler}> Delete! </button> </Link> <button> Update! </button>
+       <button onClick = {this.deleteHandler}> Delete! </button>
+       <Link to={"/editStudent/"+this.props.match.params.id}><button> Update! </button></Link>
         </div>
     )
     
@@ -53,7 +56,7 @@ render(){
 
 function mapStateToProps (storeState) {
     return {
-        students : storeState.students
+        student : storeState.student
     }
 }
 

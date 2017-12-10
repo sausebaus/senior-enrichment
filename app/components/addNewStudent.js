@@ -35,6 +35,7 @@ class AddStudent extends Component {
 
     handleSubmit(event) { 
         axios.post('/api/addStudent', this.state)
+        .then(this.props.history.push('/students'))
         event.preventDefault();
     }
 

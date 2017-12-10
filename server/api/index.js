@@ -4,6 +4,9 @@ const db = require('../db')
 const students = require('../db/models/students')
 const campuses = require('../db/models/campuses')
 
+// apiRouter.use('/students', require "./students");
+// apiRouter.use('/campuses', require "./campuses")
+
 
 apiRouter.get('/students', (req, res, next) => {
 	students.findAll()
@@ -14,16 +17,17 @@ apiRouter.get('/students', (req, res, next) => {
 
 apiRouter.get('/students/:id', (req, res, next) => {
 	var id = req.params.id;
-	students.findAll(
+	students.findOne(
 		{include: [{model: campuses}],
 		where: {
 				id : id
 			}
 		}
 	)
-	.then((students) => res.send(students))
+	.then((student) => res.send(student))
 	.catch(next)
 })
+
 
 apiRouter.delete('/students/:id', (req, res, next) => {
 	var id = req.params.id;
@@ -46,7 +50,7 @@ apiRouter.get('/campuses', (req, res, next) => {
 
 apiRouter.get('/singleCampus/:id', (req, res, next) => {
 	var id = req.params.id;
-	campuses.findAll({
+	campuses.findOne({
 		where: {
 				id : id
 			}
@@ -55,6 +59,8 @@ apiRouter.get('/singleCampus/:id', (req, res, next) => {
 	.then((campus) => res.send(campus))
 	.catch(next)
 })
+
+
 
 
 apiRouter.get('/campuses/:id', (req, res, next) => {
@@ -96,6 +102,31 @@ apiRouter.delete('/campuses/:id', (req, res, next) => {
 		}}
 	)
 	.then(res.sendStatus(202))
+	.catch(next)
+})
+
+
+apiRouter.put('/students', (req, res, next) => {
+	students.update(req.body, {
+		where: {
+			id : req.body.id
+		},
+		returning: true,
+		plain: true
+	})
+	.spread((rows, campus) => res.json(campus))
+	.catch(next)
+})
+
+apiRouter.put('/campuses', (req, res, next) => {
+	campuses.update(req.body, {
+		where: {
+			id : req.body.id
+		},
+		returning: true,
+		plain: true
+	})
+	.spread((rows, campus) => res.json(campus))
 	.catch(next)
 })
 // You can put all routes in this file; HOWEVER, this file should almost be like a table of contents for the routers you create

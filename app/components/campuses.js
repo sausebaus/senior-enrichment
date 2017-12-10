@@ -28,6 +28,8 @@ render(){
         )}
         
         </ul>
+
+        <Link to="/addCampus"> Add a campus! </Link>
         </div>
     )
     

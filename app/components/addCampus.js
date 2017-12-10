@@ -33,6 +33,7 @@ class AddCampus extends Component {
 
     handleSubmit(event) { 
         axios.post('/api/addCampus', this.state)
+        .then(this.props.history.push('/campuses'))
         event.preventDefault();
     }
 
@@ -47,7 +48,7 @@ class AddCampus extends Component {
                         <label>IMG URL: </label>
                         <textarea name = "imgUrl" value = {this.state.lastName} onChange = {this.handleInputChange} />  
                     <label>DESCRIPTION: </label>
-                        <textarea name = "description" value = {this.state.email} onChange = {this.handleInputChange} /> 
+                        <textarea name = "description" value = {this.state.email} onChange = {this.handleInputChange} />
                     <input type="submit" value="submit"/>
                 </form>
             </div>

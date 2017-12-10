@@ -22,8 +22,8 @@ class Students extends Component {
 
             <ul>
             
-            {this.props.students.map((student) => <div>
-                <Link to={`/students/${student.id}`} key = {student.id} > 
+            {this.props.students.map((student) => <div key = {student.id}>
+                <Link to={`/students/${student.id}`}  > 
                 <li> {student.fullName} </li> </Link></div>)} 
             
             </ul>

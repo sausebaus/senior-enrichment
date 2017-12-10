@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import {fetchSingleCampus} from '../reducers/campusReducer'
+import {fetchSingleCampus} from '../reducers/singleCampusReducer'
 import {fetchCampusStudents} from '../reducers/studentReducer'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import CampusStudentsContainer from './campusStudents'
+
 
 
 class SingleCampus extends Component {
+    constructor(props){
+        super(props)
+        this.deleteHandler = this.deleteHandler.bind(this);
+    }
     
 componentDidMount() {
 
     this.props.loadSingleCampus();
     this.props.loadCampusStudents();
+
+}
+
+deleteHandler(event) {
+    var thisCampus = this.props.campus.id;
+    axios.delete('/api/campuses/'+thisCampus)
 }
 
 
@@ -22,10 +32,10 @@ render(){
    
     return(
         <div>
-         {this.props.campuses.map((campus) => 
-            <div><h1 key = {campus.id}> {campus.name} </h1> 
-            <p>{campus.description} </p> 
-            <img src = {campus.imgUrl}/> </div> )} 
+        
+            <div key = {this.props.campus.id}><h1 > {this.props.campus.name} </h1> 
+            <p>{this.props.campus.description} </p> 
+            <img src = {this.props.campus.imgUrl}/> </div>
 
             <ul>
             
@@ -34,6 +44,8 @@ render(){
                 <li> {student.fullName} </li> </Link> )} 
             
             </ul>
+               <Link to="/campuses"> <button onClick = {this.deleteHandler}> Delete this campus </button> </Link>
+               <Link to={"/editCampus/"+this.props.match.params.id}> <button> Update this Campus </button> </Link>
          </div>
     )
     
@@ -42,7 +54,7 @@ render(){
 
 function mapStateToProps (storeState) {
     return {
-        campuses : storeState.campuses,
+        campus : storeState.campus,
         students : storeState.students
     }
 }

@@ -45,6 +45,8 @@ export const fetchStudents = () => {
     }
 }
 
+
+
 export const fetchSingleStudent = (id) => {
     return function (dispatch) {
         axios.get('/api/students/'+id)
@@ -61,9 +63,6 @@ const studentReducer = (state = [], action) => {
             return action.students
 
         case GET_CAMPUS_STUDENTS:
-            return action.students
-
-        case GET_SINGLE_STUDENT:
             return action.students
 
         default:
