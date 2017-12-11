@@ -79,7 +79,7 @@ class EditStudent extends Component {
         return(
             <div>
             <p/>
-            <h3> Add a new student! </h3>
+            <h3> Edit Student:   </h3>
                 <form onSubmit = {this.handleSubmit}>
                     <label>FIRST NAME: </label>
                         <input name = "firstName" defaultValue = {this.state.firstName}  onChange = {this.handleFirstNameChange} />

@@ -25,7 +25,6 @@ class EditCampus extends Component {
         const value = target.value;
         const name = target.name;
         this.setState({name : value})
-        console.log(this.state);
 
     }
     
@@ -34,7 +33,6 @@ class EditCampus extends Component {
         const value = target.value;
         const name = target.name;
         this.setState({imgUrl : value})
-        console.log(this.state);
 
     }
     
@@ -42,7 +40,6 @@ class EditCampus extends Component {
         const target = event.target;
         const value = target.value;
         this.setState({description : value})
-        console.log(this.state);
     }
 
     handleSubmit(event) { 
@@ -55,7 +52,7 @@ class EditCampus extends Component {
         return(
             <div>
             <p/>
-            <h3> Add a new campus! </h3>
+            <h3> Edit Campus: </h3>
                 <form onSubmit = {this.handleSubmit}>
                     <label>NAME: </label>
                         <input name = "name" defaultValue = {this.state.name} onChange = {this.handleNameChange} />

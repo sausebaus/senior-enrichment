@@ -102,6 +102,13 @@ apiRouter.delete('/campuses/:id', (req, res, next) => {
 		}}
 	)
 	.then(res.sendStatus(202))
+	.then(
+		students.destroy({
+			where :{
+				campusId : null
+			}
+		})
+	)
 	.catch(next)
 })
 
@@ -114,7 +121,7 @@ apiRouter.put('/students', (req, res, next) => {
 		returning: true,
 		plain: true
 	})
-	.spread((rows, campus) => res.json(campus))
+	.spread((rows, student) => res.json(student))
 	.catch(next)
 })
 

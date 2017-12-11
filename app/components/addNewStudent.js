@@ -46,13 +46,13 @@ class AddStudent extends Component {
             <h3> Add a new student! </h3>
                 <form onSubmit = {this.handleSubmit}>
                     <label>FIRST NAME: </label>
-                        <textarea name = "firstName" value = {this.state.firstName} onChange = {this.handleInputChange} />
+                        <input name = "firstName" value = {this.state.firstName} onChange = {this.handleInputChange} />
                         <label>LAST NAME: </label>
-                        <textarea name = "lastName" value = {this.state.lastName} onChange = {this.handleInputChange} />  
+                        <input name = "lastName" value = {this.state.lastName} onChange = {this.handleInputChange} />  
                     <label>EMAIL: </label>
-                        <textarea name = "email" value = {this.state.email} onChange = {this.handleInputChange} /> 
+                        <input name = "email" value = {this.state.email} onChange = {this.handleInputChange} /> 
                     <label>GPA: </label>
-                        <textarea name = "gpa" value = {this.state.gpa} onChange = {this.handleInputChange} /> 
+                        <input name = "gpa" value = {this.state.gpa} onChange = {this.handleInputChange} /> 
                     <label>CAMPUS: </label>
                     <select onChange = {this.handleInputChange} name = "campusId"> 
                         <option> Campus </option>   
