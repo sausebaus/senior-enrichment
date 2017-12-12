@@ -44,11 +44,11 @@ class AddCampus extends Component {
             <h3> Add a new campus! </h3>
                 <form onSubmit = {this.handleSubmit}>
                     <label>NAME: </label>
-                        <textarea name = "name" value = {this.state.firstName} onChange = {this.handleInputChange} />
+                        <input name = "name" value = {this.state.firstName} onChange = {this.handleInputChange} />
                         <label>IMG URL: </label>
-                        <textarea name = "imgUrl" value = {this.state.lastName} onChange = {this.handleInputChange} />  
+                        <input name = "imgUrl" value = {this.state.lastName} onChange = {this.handleInputChange} />  
                     <label>DESCRIPTION: </label>
-                        <textarea name = "description" value = {this.state.email} onChange = {this.handleInputChange} />
+                        <input name = "description" value = {this.state.email} onChange = {this.handleInputChange} />
                     <input type="submit" value="submit"/>
                 </form>
             </div>

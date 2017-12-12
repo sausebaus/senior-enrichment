@@ -46,6 +46,7 @@ render(){
             </ul>
                <Link to="/campuses"> <button onClick = {this.deleteHandler}> Delete this campus </button> </Link>
                <Link to={"/editCampus/"+this.props.match.params.id}> <button> Update this Campus </button> </Link>
+               <Link to={"/addStudent"}> <button> Add a Student! </button> </Link>
          </div>
     )
     

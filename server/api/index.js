@@ -6,6 +6,7 @@ const campuses = require('../db/models/campuses')
 
 // apiRouter.use('/students', require "./students");
 // apiRouter.use('/campuses', require "./campuses")
+//I realized I didn't actually abstract out my routes. Sorry. :(
 
 
 apiRouter.get('/students', (req, res, next) => {
@@ -97,18 +98,14 @@ apiRouter.post('/addCampus', (req, res, next) => {
 apiRouter.delete('/campuses/:id', (req, res, next) => {
 	var id = req.params.id;
 	campuses.destroy(
+		
 		{where: {
 			id : id
-		}}
+		},
+		individualHooks: true
+		}
 	)
 	.then(res.sendStatus(202))
-	.then(
-		students.destroy({
-			where :{
-				campusId : null
-			}
-		})
-	)
 	.catch(next)
 })
 
